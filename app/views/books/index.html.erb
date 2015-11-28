@@ -1,0 +1,38 @@
+
+<div class="col-md-12">
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Left</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      	<% @books.each do |f| %>
+        <tr>
+          <th scope="row"><%= f.id %></th>
+          <td><%= f.name %></td>
+          <td><%= f.writer %></td>
+          <td><%= f.left %></td>
+          
+
+          <td class = 'col-md-1'>
+          <form class="form-horizontal" action="/account/borrow#create" method="post" >
+            <%= token_tag nil %>
+            <input type='hidden' name='book_id' value = '<%= f.id %>'>
+            <button type='Submit' class = 'btn btn-primary'>Borrow</button>
+          </form>
+          </td>
+
+          <td class = 'col-md-1'><%=link_to 'Return',account_borrow_path(@current_user), class:'btn btn-primary' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+
+<%= link_to 'Create',new_book_path, class: 'btn btn-primary' %>
