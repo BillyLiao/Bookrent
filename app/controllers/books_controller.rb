@@ -30,6 +30,28 @@ class BooksController < ApplicationController
 
     end
 
+    def destroy
+        @book = Book.find(params[:book_id])
+        @book.destroy
+
+        redirect_to books_path
+    end
+
+    def edit
+        @book = Book.find(params[:book_id])
+        
+    end
+
+    def update
+
+        @book = Book.find(params[:id])
+        if @book.update(book_params)
+            redirect_to books_path
+        else
+            render :edit
+        end
+    end
+
     private
 
    	def book_params

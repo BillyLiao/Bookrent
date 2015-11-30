@@ -19,20 +19,50 @@
           <td><%= f.writer %></td>
           <td><%= f.left %></td>
           
-
           <td class = 'col-md-1'>
-          <form class="form-horizontal" action="/account/borrow#create" method="post" >
-            <%= token_tag nil %>
-            <input type='hidden' name='book_id' value = '<%= f.id %>'>
-            <button type='Submit' class = 'btn btn-primary'>Borrow</button>
-          </form>
+          <% if is_admin? %>
+            <form class="form-horizontal" action="/account/borrow#create" method="post" >
+              <%= token_tag nil %>
+              <input type='hidden' name='book_id' value = '<%= f.id %>'>
+              <button type='Submit' class = 'btn btn-primary'>Borrow</button>
+            </form>
+          <% end %>
           </td>
 
-          <td class = 'col-md-1'><%=link_to 'Return',account_borrow_path(@current_user), class:'btn btn-primary' %></td>
+          <% if is_admin? %>
+            <td class = 'col-md-1'>
+              <form class="form-horizontal" action='/account/borrow/delete_borrow/<%=f.id%>' method="post" >
+                <%= token_tag nil %>
+                <input type='hidden' name='book_id' value = '<%= f.id %>'>
+                <button type='Submit' class = 'btn btn-primary'>Return</button>
+              </form>
+            </td>
+            <td class = 'col-md-1'>
+              <form class="form-horizontal" action='/books/edit/<%=f.id%>' method="post" >
+                <%= token_tag nil %>
+                <input type='hidden' name='book_id' value = '<%= f.id %>'>
+                <button type='Submit' class = 'btn btn-primary'>Edit</button>
+              </form>
+            </td>
+            <td class = 'col-md-1'>
+              <form class="form-horizontal" action='/books/destroy/<%=f.id%>' method="post" >
+                <%= token_tag nil %>
+                <input type='hidden' name='book_id' value = '<%= f.id %>'>
+                <button type='Submit' class = 'btn btn-primary'>Delete</button>
+              </form>
+            </td>
+          <% else %>
+            <td class = 'col-md-1'></td>
+          <% end %>
+
         </tr>
         <% end %>
       </tbody>
     </table>
 </div>
 
-<%= link_to 'Create',new_book_path, class: 'btn btn-primary' %>
+<% if is_admin? %>
+  <%= link_to 'Create', new_book_path, class: 'btn btn-primary' %>
+<% end %>
+
+
