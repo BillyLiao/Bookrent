@@ -20,7 +20,7 @@
           <td><%= f.left %></td>
           
           <td class = 'col-md-1'>
-          <% if is_admin? %>
+          <% if !is_admin? %>
             <form class="form-horizontal" action="/account/borrow#create" method="post" >
               <%= token_tag nil %>
               <input type='hidden' name='book_id' value = '<%= f.id %>'>
