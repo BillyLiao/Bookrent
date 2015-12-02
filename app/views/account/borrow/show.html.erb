@@ -1,6 +1,9 @@
 <div class = 'col-md-12'>
- 
-  <h2 class="text-center"> My books </h2> 
+  <% if current_user.restriction %>
+      <p style='color:red'><%= 'You are under restriction until ' + current_user.restriction_date.to_s %>
+  <% end %>
+  <h2 class="text-center"> My books </h2>
+  
   <table class="table">
     <thead>
       <tr>
@@ -16,7 +19,7 @@
         <tr>
           <td> # </td> 
           <td> <%= book.name %> </td> 
-          <td> <%= book.borrowed_at %></td> 
+          <td> <%= book.borrowed_at %> </td> 
           <td> <%= book.returned_at %> </td> 
         </tr>
       <% end %>

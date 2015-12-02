@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128101741) do
+ActiveRecord::Schema.define(version: 20151201143251) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20151128101741) do
     t.datetime "updated_at",                          null: false
     t.string   "student_id"
     t.boolean  "admin"
+    t.datetime "restriction_date"
+    t.boolean  "restriction"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

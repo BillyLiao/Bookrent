@@ -48,7 +48,7 @@
               <form class="form-horizontal" action='/books/destroy/<%=f.id%>' method="post" >
                 <%= token_tag nil %>
                 <input type='hidden' name='book_id' value = '<%= f.id %>'>
-                <button type='Submit' class = 'btn btn-primary'>Delete</button>
+                <button type='Submit' class = 'btn btn-primary' onclick="return confirm('Are you sure want to delete');">Delete</button>
               </form>
             </td>
           <% else %>
