@@ -1,0 +1,25 @@
+<div class = 'book col-md-12 row'>
+
+	<div class = 'col-md-2'>
+		<%= image_tag @book.image_url(:thumb).to_s %>
+	</div>	
+	<div class = 'col-md-10'>
+	<table class = 'table table-striped'>
+	<thead>
+		<tr>
+			<td>Name</td>
+			<td>Author</td>
+			<td>Left</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td><%= @book.name %></td>
+			<td><%= @book.writer %></td>
+			<td><%= @book.left %></td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
+</div>

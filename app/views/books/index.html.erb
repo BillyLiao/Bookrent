@@ -15,7 +15,7 @@
       	<% @books.each do |f| %>
         <tr>
           <th scope="row"><%= f.id %></th>
-          <td><%= f.name %></td>
+          <td><%= link_to f.name, book_path(f) %></td>
           <td><%= f.writer %></td>
           <td><%= f.left %></td>
           
